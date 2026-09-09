@@ -1,0 +1,598 @@
+/* Liguria Pizza — stylesheet
+   Mobile first. Breakpoints are minimal on purpose: the layout is fluid
+   (clamp + auto-fit grids), so there are only two real media queries. */
+
+:root {
+  --cream: #f6f0e4;
+  --cream-card: #fffbf2;
+  --ink: #1a1512;
+  --ink-70: #4a403a;
+  --ink-55: #756a61;
+  --tomato: #b3341f;
+  --tomato-dark: #8e2617;
+  --gold: #e0a33c;
+  --wa: #128c4b;
+  --wa-dark: #0e7540;
+  --veg: #2f6b3a;
+  --line: rgba(26, 21, 18, 0.12);
+  --shell: 1120px;
+  --pad: 18px;
+  --serif: "Instrument Serif", Georgia, serif;
+  --sans: Archivo, system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+}
+a {
+  color: var(--tomato);
+  text-decoration: none;
+}
+a:hover {
+  color: #7e2415;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  margin: 0;
+}
+h1 {
+  font-size: clamp(38px, 8vw, 68px);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+h2 {
+  font-size: clamp(30px, 5.5vw, 46px);
+}
+
+/* ---------- shared bits ---------- */
+
+.kicker {
+  margin: 0 0 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tomato);
+}
+.kicker--muted {
+  color: var(--ink-55);
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+.kicker--gold {
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  margin-bottom: 12px;
+}
+
+.lede {
+  max-width: 46ch;
+  margin: 0 0 26px;
+  font-size: clamp(16px, 2.2vw, 19px);
+  line-height: 1.55;
+  color: #3d342d;
+  text-wrap: pretty;
+}
+.lede--sm {
+  font-size: 17px;
+  max-width: 42ch;
+  color: var(--ink-70);
+  margin-bottom: 22px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+}
+.icon--lg {
+  width: 20px;
+  height: 20px;
+}
+.social .icon--lg {
+  width: 22px;
+  height: 22px;
+  filter: none;
+}
+
+.rule {
+  border: 0;
+  height: 1px;
+  background: rgba(26, 21, 18, 0.15);
+  margin: 18px 0 28px;
+}
+
+.section {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 56px var(--pad) 16px;
+  scroll-margin-top: 84px;
+}
+.section:last-of-type {
+  padding-bottom: 40px;
+}
+.section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 18px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  align-items: start;
+  margin-top: 18px;
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px; /* comfortable tap target */
+  padding: 15px 24px;
+  border: 0;
+  border-radius: 999px;
+  font: 600 16px/1 var(--sans);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+.btn--sm {
+  min-height: 44px;
+  padding: 11px 16px;
+  font-size: 14px;
+  gap: 8px;
+}
+.btn--primary {
+  background: var(--tomato);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: var(--tomato-dark);
+  color: #fff;
+}
+.btn--ghost {
+  border: 1.5px solid rgba(26, 21, 18, 0.28);
+  color: var(--ink);
+}
+.btn--ghost:hover {
+  border-color: var(--ink);
+  background: rgba(26, 21, 18, 0.05);
+  color: var(--ink);
+}
+.btn--wa {
+  background: var(--wa);
+  color: #fff;
+}
+.btn--wa:hover {
+  background: var(--wa-dark);
+  color: #fff;
+}
+.btn--dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+.btn--dark:hover {
+  background: #332a24;
+}
+.btn--light {
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 48px;
+  padding: 13px 22px;
+}
+.btn--light:hover {
+  background: #fff;
+  color: var(--ink);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- nav ---------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(246, 240, 228, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav__inner {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 10px var(--pad);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+}
+.nav__brand img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+.nav__brand span {
+  font-family: var(--serif);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+.nav__spacer {
+  flex: 1;
+}
+
+.lang {
+  display: flex;
+  gap: 8px;
+}
+.lang__btn {
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid rgba(26, 21, 18, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-55);
+  font: 600 13px/1 var(--sans);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+.lang__btn.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 40px 10px 8px 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  align-items: center;
+}
+.hero__art {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero__art::before {
+  /* warm halo behind the pizza */
+  content: "";
+  position: absolute;
+  inset: 8% 6%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, #efd9a8 0%, var(--cream) 70%);
+}
+.hero__art img {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  display: block;
+}
+
+/* ---------- menu ---------- */
+
+/* Cards share one flex basis so they grow together; script.js equalises and
+   centres a short final row. The three .menu__filler stops a lone last card
+   from stretching wider than the ones above it (CSS-only fallback). */
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -9px;
+}
+.menu__card,
+.menu__filler {
+  flex: 1 1 300px;
+  max-width: 600px;
+  margin: 9px;
+}
+.menu__filler {
+  height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.menu__card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--cream-card);
+  border: 1px solid rgba(26, 21, 18, 0.1);
+  border-radius: 18px;
+  padding: 18px;
+  transition: border-color 0.15s ease;
+}
+.menu__card:hover {
+  border-color: rgba(179, 52, 31, 0.45);
+}
+
+.menu__shot {
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  overflow: hidden;
+  background: repeating-linear-gradient(
+    135deg,
+    #f1e7d4 0 10px,
+    #e9dcc4 10px 20px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.menu__shot span {
+  /* placeholder for a missing photo */
+  padding: 0 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a7b66;
+  text-align: center;
+}
+
+.menu__name {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.menu__name h3 {
+  font-size: 26px;
+  letter-spacing: 0.01em;
+}
+.menu__desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-70);
+  text-wrap: pretty;
+}
+
+.tag {
+  padding: 3px 8px;
+  border: 1px solid rgba(47, 107, 58, 0.4);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--veg);
+}
+
+/* ---------- where we are ---------- */
+
+.card-dark {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 20px;
+  padding: 26px;
+}
+.card-dark__title {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 34px);
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+.card-dark__addr {
+  margin: 0 0 22px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #cfc5b6;
+}
+
+.hours {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 22px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(246, 240, 228, 0.2);
+  border-bottom: 1px solid rgba(246, 240, 228, 0.2);
+}
+.hours__day {
+  font-weight: 700;
+  font-size: 20px;
+}
+.hours__time {
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--gold);
+}
+
+.map {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 300px;
+}
+.map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border: 0;
+}
+
+/* ---------- contact ---------- */
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 26px 0 0;
+}
+.social a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--cream-card);
+  border: 1px solid rgba(26, 21, 18, 0.1);
+  border-radius: 20px;
+  padding: 22px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.field > span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-55);
+}
+.field input,
+.field textarea {
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid rgba(26, 21, 18, 0.2);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: 400 16px/1.4 var(--sans); /* 16px keeps iOS from zooming on focus */
+}
+.field textarea {
+  resize: vertical;
+}
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--tomato);
+  outline-offset: 1px;
+}
+
+/* ---------- footer ---------- */
+
+.foot {
+  background: var(--ink);
+  color: #cfc5b6;
+  padding: 34px var(--pad);
+}
+.foot__inner {
+  max-width: var(--shell);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.foot img {
+  height: 52px;
+  width: auto;
+}
+.foot p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ---------- media queries ---------- */
+
+/* On a phone the hero pizza dominates the screen for no benefit — drop it. */
+@media (max-width: 400px) {
+  .hero__art {
+    display: none;
+  }
+
+  .lang__btn,
+  .btn--sm {
+    min-height: 28px;
+    padding: 6px 8px;
+    font: 600 11px/1 var(--sans);
+  }
+
+  .btn-row {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero {
+    padding: 40px 18px 8px 15px;
+  }
+
+  .menu__card,
+  .menu__filler {
+    flex: 1 1 180px;
+    max-width: 100%;
+    margin: 6px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero__art {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}

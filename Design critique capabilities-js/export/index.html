@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liguria Pizza — Napolitana de verdade, na Feira de Barão Geraldo</title>
+<meta name="description" content="Pizza napolitana individual de massa de longa fermentação, assada na hora. Todo sábado na Feira de Barão Geraldo, Campinas.">
+<link rel="icon" href="liguriaLogo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#top">
+      <img src="liguriaLogo.png" alt="Liguria Pizza">
+      <span>LIGURIA</span>
+    </a>
+    <div class="nav__spacer"></div>
+    <div class="lang" role="group" aria-label="Idioma">
+      <button type="button" class="lang__btn is-on" data-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn btn--wa btn--sm" href="https://wa.me/5519989601411">
+      <img class="icon" src="whatsapp-icon.png" alt="">
+      <span data-i18n="navCta">Mensagem</span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero__copy">
+      <p class="kicker">Barão Geraldo · Campinas</p>
+      <h1 data-i18n="h1">Napolitana de Verdade, na Feira de Barão</h1>
+      <p class="lede" data-i18n="sub">Massa de longa fermentação, assada na hora. Pizzas individuais de 22 cm feitas com ingredientes simples e bem escolhidos.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#onde-estamos" data-i18n="heroCta">Onde nos encontrar</a>
+        <a class="btn btn--ghost" href="#cardapio" data-i18n="heroCta2">Ver o cardápio</a>
+      </div>
+    </div>
+    <div class="hero__art">
+      <img src="Pizza-margherita.png" alt="Pizza Margherita da Liguria" width="460" height="460">
+    </div>
+  </section>
+
+  <section id="cardapio" class="section">
+    <div class="section__head">
+      <h2 data-i18n="menuTitle">Nossas pizzas</h2>
+      <span class="kicker kicker--muted" data-i18n="menuNote">Individuais · 22 cm</span>
+    </div>
+    <hr class="rule">
+    <div class="menu" id="menu-grid">
+      <!-- Cards are rendered by script.js from the MENU data, so PT/EN stays in one place. -->
+    </div>
+  </section>
+
+  <section id="onde-estamos" class="section">
+    <h2 data-i18n="whereTitle">Onde estamos</h2>
+    <div class="two-col">
+      <div class="card-dark">
+        <p class="kicker kicker--gold" data-i18n="whereKicker">Todo sábado</p>
+        <p class="card-dark__title" data-i18n="whereName">Feira de Barão Geraldo</p>
+        <p class="card-dark__addr" data-i18n="whereAddr">“Praça do Coco”, Barão Geraldo — Campinas, SP</p>
+        <p class="hours">
+          <span class="hours__day" data-i18n="whereDay">Sábado</span>
+          <time class="hours__time" datetime="Sa 11:00-16:00">11:00 – 16:00</time>
+        </p>
+        <a class="btn btn--light" href="https://www.google.com/maps/search/?api=1&amp;query=-22.820629,-47.083278" data-i18n="whereCta">Como chegar</a>
+      </div>
+      <div class="map">
+        <iframe
+          title="Mapa da Feira de Barão Geraldo"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d591.4652904499054!2d-47.08327860828234!3d-22.820629245636475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8c19da6e6f923%3A0x703562307a3241e1!2sFeira%20de%20Bar%C3%A3o%20Geraldo%20Pra%C3%A7a%20do%20Coco!5e0!3m2!1spt-BR!2sbr!4v1744157793940!5m2!1spt-BR!2sbr"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="section">
+    <div class="two-col">
+      <div>
+        <h2 data-i18n="contactTitle">Contato</h2>
+        <p class="lede lede--sm" data-i18n="contactBody">Quer a Liguria no seu evento? Mande uma mensagem — respondemos o mais breve possível.</p>
+        <a class="btn btn--wa" href="https://wa.me/5519989601411">
+          <img class="icon icon--lg" src="whatsapp-icon.png" alt="">
+          <span data-i18n="contactWa">Falar no WhatsApp</span>
+        </a>
+        <p class="social">
+          <a href="https://www.instagram.com/liguriapizza/">
+            <img class="icon icon--lg" src="Instagram_Glyph_Black.png" alt="">
+            <span>@liguriapizza</span>
+          </a>
+        </p>
+      </div>
+
+      <form class="form" id="contact-form" action="https://wa.me/5519989601411" method="get">
+        <label class="field">
+          <span data-i18n="fName">Nome</span>
+          <input type="text" name="nome" autocomplete="name" required>
+        </label>
+        <label class="field">
+          <span data-i18n="fEmail">E-mail</span>
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label class="field">
+          <span data-i18n="fMsg">Mensagem</span>
+          <textarea name="mensagem" rows="4" required></textarea>
+        </label>
+        <button class="btn btn--dark" type="submit" data-i18n="fSend">Enviar mensagem</button>
+        <p class="form__note" data-i18n="fNote">Abre o WhatsApp com sua mensagem pronta para enviar.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <img src="liguriaLogo.png" alt="Liguria Pizza" height="52">
+    <p>
+      Copyright© 2025 Liguria Pizza.<br>
+      <span data-i18n="rights">Todos os direitos reservados</span> · <span data-i18n="by">Site por</span> Fernando Boschiero
+    </p>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/5519989601411" aria-label="WhatsApp">
+  <img src="whatsapp-icon.png" alt="">
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>
