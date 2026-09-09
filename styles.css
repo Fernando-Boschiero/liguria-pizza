@@ -52,6 +52,7 @@ a {
 }
 a:hover {
   color: #7e2415;
+  cursor: pointer;
 }
 
 h1,
